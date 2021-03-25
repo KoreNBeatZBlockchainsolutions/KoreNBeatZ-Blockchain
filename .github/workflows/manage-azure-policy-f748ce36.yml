@@ -1,0 +1,66 @@
+name: manage-azure-policy-f748ce36
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'policies/Storage_accounts_should_restrict_network_access_using_virtual_network_rules_2a1a9cdf-e04d-429a-8416-3bfb72a1b26f/**'
+#      - 'initiatives/Azure_Security_Benchmark_1f3afdf9-d0c9-4c3d-847f-89da613e70a8/**'
+#      - 'initiatives/CIS_Microsoft_Azure_Foundations_Benchmark_1.1.0_1a5bb27d-173f-493e-9568-eb56638dde4d/**'
+#      - 'initiatives/_Preview_Deploy_prerequisites_to_enable_Guest_Configuration_policies_on_virtual_machines_12794019-7a00-42cf-95c2-882eed337cc8/**'
+#      - 'initiatives/Kubernetes_cluster_pod_security_restricted_standards_for_Linux-based_workloads_42b8ef37-b724-4e24-bbc8-7a7708edfe00/**'
+#      - 'initiatives/Enable_Azure_Monitor_for_VMs_55f3eceb-5573-4f18-9695-226972c6d74a/**'
+#      - 'initiatives/Enable_Azure_Monitor_for_Virtual_Machine_Scale_Sets_75714362-cae7-409e-9b99-a8e5075b7fad/**'
+#      - 'initiatives/Flow_logs_should_be_configured_and_enabled_for_every_network_security_group_62329546-775b-4a3d-a4cb-eb4bb990d2c0/**'
+#      - 'initiatives/_Preview_Motion_Picture_Association_of_America_(MPAA)_92646f03-e39d-47a9-9e24-58d60ef49af8/**'
+#      - 'initiatives/_Preview_Enable_Data_Protection_Suite_9cb3cc7a-b39b-4b82-bc89-e5a5d9ff7b97/**'
+#      - 'initiatives/_Preview_Deploy_-_Configure_prerequisites_to_enable_Azure_Monitor_and_Azure_Security_agents_on_virtual_machines_a15f3269-2e10-458c-87a4-d5989e678a73/**'
+#      - 'initiatives/Kubernetes_cluster_pod_security_baseline_standards_for_Linux-based_workloads_a8640138-9b0a-4a28-b8cb-1666c838647d/**'
+#      - 'initiatives/_Preview_Windows_machines_should_meet_requirements_for_the_Azure_security_baseline_be7a78aa-3e10-4153-a5fd-8c6506dbc821/**'
+#      - 'initiatives/_Preview_CMMC_Level_3_b5629c75-5c77-4422-87b9-2509e680f8de/**'
+#      - 'initiatives/Enable_Azure_Cosmos_DB_throughput_policy_cb5e1e90-7c33-491c-a15b-24885c915752/**'
+#      - 'initiatives/NIST_SP_800-53_R4_cf25b9c1-bd23-4eb6-bd2c-f4f3ac644a5f/**'
+#      - 'initiatives/FedRAMP_High_d5264498-16f4-418a-b659-fa7ef418175f/**'
+#      - 'initiatives/FedRAMP_Moderate_e95f5a9f-57ad-4d03-bb0b-b1d16db93693/**'
+#      - .github/workflows/manage-azure-policy-f748ce36.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_f748ce36}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/Storage_accounts_should_restrict_network_access_using_virtual_network_rules_2a1a9cdf-e04d-429a-8416-3bfb72a1b26f/**
+          initiatives/Azure_Security_Benchmark_1f3afdf9-d0c9-4c3d-847f-89da613e70a8/**
+          initiatives/CIS_Microsoft_Azure_Foundations_Benchmark_1.1.0_1a5bb27d-173f-493e-9568-eb56638dde4d/**
+          initiatives/_Preview_Deploy_prerequisites_to_enable_Guest_Configuration_policies_on_virtual_machines_12794019-7a00-42cf-95c2-882eed337cc8/**
+          initiatives/Kubernetes_cluster_pod_security_restricted_standards_for_Linux-based_workloads_42b8ef37-b724-4e24-bbc8-7a7708edfe00/**
+          initiatives/Enable_Azure_Monitor_for_VMs_55f3eceb-5573-4f18-9695-226972c6d74a/**
+          initiatives/Enable_Azure_Monitor_for_Virtual_Machine_Scale_Sets_75714362-cae7-409e-9b99-a8e5075b7fad/**
+          initiatives/Flow_logs_should_be_configured_and_enabled_for_every_network_security_group_62329546-775b-4a3d-a4cb-eb4bb990d2c0/**
+          initiatives/_Preview_Motion_Picture_Association_of_America_(MPAA)_92646f03-e39d-47a9-9e24-58d60ef49af8/**
+          initiatives/_Preview_Enable_Data_Protection_Suite_9cb3cc7a-b39b-4b82-bc89-e5a5d9ff7b97/**
+          initiatives/_Preview_Deploy_-_Configure_prerequisites_to_enable_Azure_Monitor_and_Azure_Security_agents_on_virtual_machines_a15f3269-2e10-458c-87a4-d5989e678a73/**
+          initiatives/Kubernetes_cluster_pod_security_baseline_standards_for_Linux-based_workloads_a8640138-9b0a-4a28-b8cb-1666c838647d/**
+          initiatives/_Preview_Windows_machines_should_meet_requirements_for_the_Azure_security_baseline_be7a78aa-3e10-4153-a5fd-8c6506dbc821/**
+          initiatives/_Preview_CMMC_Level_3_b5629c75-5c77-4422-87b9-2509e680f8de/**
+          initiatives/Enable_Azure_Cosmos_DB_throughput_policy_cb5e1e90-7c33-491c-a15b-24885c915752/**
+          initiatives/NIST_SP_800-53_R4_cf25b9c1-bd23-4eb6-bd2c-f4f3ac644a5f/**
+          initiatives/FedRAMP_High_d5264498-16f4-418a-b659-fa7ef418175f/**
+          initiatives/FedRAMP_Moderate_e95f5a9f-57ad-4d03-bb0b-b1d16db93693/**
